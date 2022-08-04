@@ -13,22 +13,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static praktikum.IngredientType.SAUCE;
 
-public class BurgerWithMokTest {
+public class BurgerWithMokTest extends Burger {
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
     private Ingredient ingredient;
     @Mock
     private Bun bun;
-    Burger burger;
+    //Burger burger;
 
     @Before //создаем "абстрактный" бургер
     public void setUp() {
-        burger = new Burger();
-        burger.addIngredient(ingredient);
-        burger.addIngredient(ingredient);
-        burger.addIngredient(ingredient);
-        burger.setBuns(bun);
+        addIngredient(ingredient);
+        addIngredient(ingredient);
+        addIngredient(ingredient);
+        setBuns(bun);
     }
 
     //Проверяем рецепт бургера, с мокированными ингредиентами
@@ -37,9 +36,9 @@ public class BurgerWithMokTest {
         Mockito.when(ingredient.getType()).thenReturn(SAUCE);
         Mockito.when(ingredient.getName()).thenReturn("Соус Spicy-X");
         Mockito.when(bun.getName()).thenReturn("Краторная булка N-200i");
-        assertTrue(burger.getReceipt().contains("Соус Spicy-X"));
-        assertTrue(burger.getReceipt().contains("Краторная булка N-200i"));
-        assertTrue(burger.getReceipt().contains(SAUCE.toString().toLowerCase()));
+        assertTrue(getReceipt().contains("Соус Spicy-X"));
+        assertTrue(getReceipt().contains("Краторная булка N-200i"));
+        assertTrue(getReceipt().contains(SAUCE.toString().toLowerCase()));
     }
 
     //Проверяем цену бургера, с мокированными ценами ингредиентов
@@ -47,6 +46,6 @@ public class BurgerWithMokTest {
     public void getPriceTestWithMok() {
         Mockito.when(ingredient.getPrice()).thenReturn(199.9f);
         Mockito.when(bun.getPrice()).thenReturn(99.9f);
-        assertEquals(799.5, burger.getPrice(), 0);
+        assertEquals(799.5, getPrice(), 0);
     }
 }

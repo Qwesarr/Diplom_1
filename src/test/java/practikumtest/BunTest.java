@@ -8,8 +8,8 @@ import praktikum.Bun;
 
 public class BunTest {
     private Bun bun;
-    String name = "Флюоресцентная булка R2-D3";
-    float price = 988.55f;
+    private static final String name = "Флюоресцентная булка R2-D3";
+    private static final float price = 988.55f;
 
     @Before
     public void setUp(){

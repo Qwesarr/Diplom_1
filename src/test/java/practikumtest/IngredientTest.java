@@ -2,6 +2,7 @@ package practikumtest;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import praktikum.Database;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 import static praktikum.IngredientType.FILLING;
@@ -10,7 +11,7 @@ import static praktikum.IngredientType.SAUCE;
 @RunWith(Parameterized.class)
 public class IngredientTest {
     private Ingredient ingredient;
-
+    private static final Database database = new Database();
     @Parameterized.Parameter
     public String name;
     @Parameterized.Parameter(1)
@@ -27,7 +28,7 @@ public class IngredientTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         ingredient = new Ingredient(type, name, price);
     }
 
