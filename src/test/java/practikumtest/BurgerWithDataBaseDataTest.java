@@ -8,7 +8,7 @@ import praktikum.*;
 import static org.junit.Assert.assertEquals;
 
 public class BurgerWithDataBaseDataTest extends Burger{
-    private static final Database database = new Database();
+    private static Database database = new Database();
 
     @Before
     public void setUp() {
